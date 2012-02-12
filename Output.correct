@@ -1,0 +1,356 @@
+;; Dribble of #<io terminal-stream> started on nil.
+
+          BEGIN TESTING
+
+
+                    TEST-ORDER
+
+testing:  (order nil nil)
+value:    (nil nil)
+
+testing:  (order 'a nil)
+value:    (a nil)
+
+testing:  (order nil 44)
+value:    (nil 44)
+
+testing:  (order nil '(1 2 3 4))
+value:    (nil (1 2 3 4))
+
+testing:  (order '(1 2 3 4) '(1 2 3 4))
+value:    ((1 2 3 4) (1 2 3 4))
+
+testing:  (order 1 2)
+value:    (1 2)
+
+testing:  (order 2 2)
+value:    (2)
+
+testing:  (order 2 1)
+value:    (1 2)
+
+testing:  (order 0 -999)
+value:    (-999 0)
+
+testing:  (order '(10) '(10))
+value:    ((10) (10))
+
+testing:  (order '10 '10)
+value:    (10)
+
+
+                    TEST-COMBINE
+
+
+                              TEST-A-COMBINE on:  combine-recursive
+
+testing:  (combine-fun nil nil)
+value:    nil
+
+testing:  (combine-fun 'a nil)
+value:    nil
+
+testing:  (combine-fun nil 44)
+value:    nil
+
+testing:  (combine-fun nil '(1 2 3 4))
+value:    nil
+
+testing:  (combine-fun '(1) '(2))
+value:    ((1 2))
+
+testing:  (combine-fun '(1 2) '(3 4))
+value:    ((1 3) (2 4))
+
+testing:  (combine-fun '(1 2) '(1 2))
+value:    ((1) (2))
+
+testing:  (combine-fun '(3 4) '(1 2))
+value:    ((1 3) (2 4))
+
+testing:  (combine-fun '(1 2 3) 'nil)
+value:    nil
+
+testing:  (combine-fun '(3 2 1) '(1 2 3))
+value:    ((1 3) (2) (1 3))
+
+testing:  (combine-fun '(1 2 2 3) '(0 0 2 3))
+value:    ((0 1) (0 2) (2) (3))
+
+testing:  (combine-fun '(1 2 0 -3) '(0 0 2 3))
+value:    ((0 1) (0 2) (0 2) (-3 3))
+
+testing:  (combine-fun '(1 2 0 -3 4) '(0 -1 2 3 4))
+value:    ((0 1) (-1 2) (0 2) (-3 3) (4))
+
+testing:  (combine-fun '(1 2 3 4) '(5))
+value:    nil
+
+testing:  (combine-fun '(1 2 3 4) nil)
+value:    nil
+
+testing:  (combine-fun nil '(1 2 3 4))
+value:    nil
+
+
+                              TEST-A-COMBINE on:  combine-mapcar
+
+testing:  (combine-fun nil nil)
+value:    nil
+
+testing:  (combine-fun 'a nil)
+value:    nil
+
+testing:  (combine-fun nil 44)
+value:    nil
+
+testing:  (combine-fun nil '(1 2 3 4))
+value:    nil
+
+testing:  (combine-fun '(1) '(2))
+value:    ((1 2))
+
+testing:  (combine-fun '(1 2) '(3 4))
+value:    ((1 3) (2 4))
+
+testing:  (combine-fun '(1 2) '(1 2))
+value:    ((1) (2))
+
+testing:  (combine-fun '(3 4) '(1 2))
+value:    ((1 3) (2 4))
+
+testing:  (combine-fun '(1 2 3) 'nil)
+value:    nil
+
+testing:  (combine-fun '(3 2 1) '(1 2 3))
+value:    ((1 3) (2) (1 3))
+
+testing:  (combine-fun '(1 2 2 3) '(0 0 2 3))
+value:    ((0 1) (0 2) (2) (3))
+
+testing:  (combine-fun '(1 2 0 -3) '(0 0 2 3))
+value:    ((0 1) (0 2) (0 2) (-3 3))
+
+testing:  (combine-fun '(1 2 0 -3 4) '(0 -1 2 3 4))
+value:    ((0 1) (-1 2) (0 2) (-3 3) (4))
+
+testing:  (combine-fun '(1 2 3 4) '(5))
+value:    nil
+
+testing:  (combine-fun '(1 2 3 4) nil)
+value:    nil
+
+testing:  (combine-fun nil '(1 2 3 4))
+value:    nil
+
+
+                              TEST-A-COMBINE on:  combine-iterative
+
+testing:  (combine-fun nil nil)
+value:    nil
+
+testing:  (combine-fun 'a nil)
+value:    nil
+
+testing:  (combine-fun nil 44)
+value:    nil
+
+testing:  (combine-fun nil '(1 2 3 4))
+value:    nil
+
+testing:  (combine-fun '(1) '(2))
+value:    ((1 2))
+
+testing:  (combine-fun '(1 2) '(3 4))
+value:    ((1 3) (2 4))
+
+testing:  (combine-fun '(1 2) '(1 2))
+value:    ((1) (2))
+
+testing:  (combine-fun '(3 4) '(1 2))
+value:    ((1 3) (2 4))
+
+testing:  (combine-fun '(1 2 3) 'nil)
+value:    nil
+
+testing:  (combine-fun '(3 2 1) '(1 2 3))
+value:    ((1 3) (2) (1 3))
+
+testing:  (combine-fun '(1 2 2 3) '(0 0 2 3))
+value:    ((0 1) (0 2) (2) (3))
+
+testing:  (combine-fun '(1 2 0 -3) '(0 0 2 3))
+value:    ((0 1) (0 2) (0 2) (-3 3))
+
+testing:  (combine-fun '(1 2 0 -3 4) '(0 -1 2 3 4))
+value:    ((0 1) (-1 2) (0 2) (-3 3) (4))
+
+testing:  (combine-fun '(1 2 3 4) '(5))
+value:    nil
+
+testing:  (combine-fun '(1 2 3 4) nil)
+value:    nil
+
+testing:  (combine-fun nil '(1 2 3 4))
+value:    nil
+
+
+                    TEST-REMOVE-IF
+
+
+                              TEST-A-REMOVE-IF on:  remove-if-recursive
+
+testing:  (remove-if-fun 'evenp '(0 1 2 3 4))
+value:    (1 3)
+
+testing:  (remove-if-fun 'oddp '(0 1 2 3 4))
+value:    (0 2 4)
+
+testing:  (remove-if-fun 'evenp '(0 2 4 6 8 10 12))
+value:    nil
+
+testing:  (remove-if-fun 'oddp '(0 2 4 6 8 10 12))
+value:    (0 2 4 6 8 10 12)
+
+testing:  (remove-if-fun 'evenp nil)
+value:    nil
+
+testing:  (remove-if-fun 'listp '(0 nil (a b c) hi (nil) mom))
+value:    (0 hi mom)
+
+testing:  (remove-if-fun #'(lambda (x) (= (length x) 3)) '((a) (a b c) nil (d e f)))
+value:    ((a) nil)
+
+testing:  (remove-if-fun #'(lambda (x) (< (length x) 3)) '((a) (a b c) nil (d e f)))
+value:    ((a b c) (d e f))
+
+
+                              TEST-A-REMOVE-IF on:  remove-if-mapcar
+
+testing:  (remove-if-fun 'evenp '(0 1 2 3 4))
+value:    (1 3)
+
+testing:  (remove-if-fun 'oddp '(0 1 2 3 4))
+value:    (0 2 4)
+
+testing:  (remove-if-fun 'evenp '(0 2 4 6 8 10 12))
+value:    nil
+
+testing:  (remove-if-fun 'oddp '(0 2 4 6 8 10 12))
+value:    (0 2 4 6 8 10 12)
+
+testing:  (remove-if-fun 'evenp nil)
+value:    nil
+
+testing:  (remove-if-fun 'listp '(0 nil (a b c) hi (nil) mom))
+value:    (0 hi mom)
+
+testing:  (remove-if-fun #'(lambda (x) (= (length x) 3)) '((a) (a b c) nil (d e f)))
+value:    ((a) nil)
+
+testing:  (remove-if-fun #'(lambda (x) (< (length x) 3)) '((a) (a b c) nil (d e f)))
+value:    ((a b c) (d e f))
+
+
+                    TEST-SIMPLIFY
+
+testing:  (simplify nil)
+value:    nil
+
+testing:  (simplify '(a b c d e f))
+value:    (a b c d e f)
+
+testing:  (simplify '(not a))
+value:    (not a)
+
+testing:  (simplify '(not (not a)))
+value:    a
+
+testing:  (simplify '(not (not (not a))))
+value:    (not a)
+
+testing:  (simplify '(not (not (not (not a)))))
+value:    a
+
+testing:  (simplify '(not (not (not (not (not a))))))
+value:    (not a)
+
+testing:  (simplify '(cons (not (not (not a))) (not (not b))))
+value:    (cons (not a) b)
+
+testing:  (simplify '(cons (not (goo (not a))) (not (foo b))))
+value:    (cons (not (goo (not a))) (not (foo b)))
+
+testing:  (simplify '(cons (not (not (goo a))) (foo (not b))))
+value:    (cons (goo a) (foo (not b)))
+
+testing:  
+(simplify
+ '(cons (not (not (goo (not (not (not a))))))
+   (foo (not (not (not (foo (not (not b)))))))))
+value:    (cons (goo (not a)) (foo (not (foo b))))
+
+testing:  (simplify '(and a b))
+value:    (and a b)
+
+testing:  (simplify '(or b))
+value:    (or b)
+
+testing:  (simplify '(and (or a b)))
+value:    (and (or a b))
+
+testing:  (simplify '(and (and a b)))
+value:    (and a b)
+
+testing:  (simplify '(goo (and (and a b))))
+value:    (goo (and a b))
+
+testing:  (simplify '(and a (and b c) d (and e f)))
+value:    (and a b c d e f)
+
+testing:  (simplify '(and a (and b (and c1 c2 c3)) d (and e f)))
+value:    (and a b c1 c2 c3 d e f)
+
+testing:  (simplify '(and a (or b (or c1 c2 c3)) d (and e f)))
+value:    (and a (or b c1 c2 c3) d e f)
+
+testing:  (simplify '(and a (goo b (or c1 c2 c3)) d (and e f)))
+value:    (and a (goo b (or c1 c2 c3)) d e f)
+
+testing:  (simplify '(and a (goo b (or c1 c2 c3)) (foo (and (and b c) d) (and e f))))
+value:    (and a (goo b (or c1 c2 c3)) (foo (and b c d) (and e f)))
+
+testing:  
+(simplify
+ '(and a (goo b (or (not (not c1)) (not (not (not c2))) c3))
+   (foo (and (and b c) d) (and e f)
+    (not (and (not x) (or (or (not (not x)))))))))
+value:    
+(and a (goo b (or c1 (not c2) c3))
+ (foo (and b c d) (and e f) (not (and (not x) (or x)))))
+
+testing:  (simplify '(and a (not (not (and b c))) d))
+value:    (and a b c d)
+
+testing:  (simplify '(foo (and a (not (not (and b c))) d)))
+value:    (foo (and a b c d))
+
+testing:  
+(simplify
+ '(foo (and a (not (not (and b c))) d (and e (not (not (and f g))) h))))
+value:    (foo (and a b c d e f g h))
+
+testing:  (simplify '(foo (or a (not (not (or b (not (not (or c d)))))) e)))
+value:    (foo (or a b c d e))
+
+testing:  (simplify '(foo (or a (not (not (and b (not (not (or c d)))))) e)))
+value:    (foo (or a (and b (or c d)) e))
+
+testing:  (simplify '(foo (or a (not (and b (not (not (not (or c d))))))) e))
+value:    (foo (or a (not (and b (not (or c d))))) e)
+
+
+          DONE TESTING
+
+2010-12-05 09:44:49
+;; Dribble of #<io terminal-stream> finished on nil.
