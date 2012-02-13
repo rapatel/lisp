@@ -54,3 +54,22 @@
     )
   )
 )
+
+(defun remove-if-recursive (f x)
+  (cond
+    ((null f) nil)
+    ((null x) nil)
+    (t (append (if (funcall f (car x)) nil (list (car x)))
+	       (remove-if-recursive f (cdr x))
+       )
+    )
+  )
+)
+
+(defun remove-if-mapcar (f x)
+  (cond
+    ((null f) nil)
+    ((null x) nil)
+    (t (apply #'append (mapcar #'(lambda (x1) (if (funcall f x1) nil (list x1))) x)))
+  )
+)
