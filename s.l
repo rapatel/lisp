@@ -78,9 +78,10 @@
   (cond
     ((null x) nil)
     ((not (listp x)) x)
-    ((listp (car x)) (append (if (null (simplify (car x))) nil (list (simplify (car x))))
-			     (if (null (simplify (cadr x))) nil (list (simplify (cadr x))))
-		     )
+    ((listp (car x)) 
+      (append (if (null (simplify (car x))) nil (list (simplify (car x))))
+	      (if (null (simplify (cdr x))) nil (simplify (cdr x)))
+      )
     )
     ((eq (car x) `not)
       (if (listp (cadr x))
@@ -90,7 +91,29 @@
         )
 	x ; return original list
       )
-    )
+    ) ; NOT
+    ((eq (car x) `and)
+      (append (list (car x))
+	      (rem (simplify (cdr x)) `and)
+      )
+
+    ) ; AND
+    ((eq (car x) `or)
+      (append (list (car x))
+	      (rem (simplify (cdr x)) `or)
+      )
+
+    ) ; OR
     (t (append (list (car x)) (simplify (cdr x))))
+  )
+)
+
+(defun rem (x s)
+  (cond
+    ((null x) nil)
+    ((listp (car x))
+      (append (if (eq (car (car x)) s) (cdr (car x)) (list (car x))) (rem (cdr x) s))
+    )
+    (t (append (list (car x)) (rem (cdr x) s)))
   )
 )
